@@ -319,7 +319,7 @@ QTabBar::tab {
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabPen">
      <attribute name="title">
@@ -491,10 +491,10 @@ QTabBar::tab {
      <widget class="QSlider" name="slideLaserPower">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>60</y>
+        <x>19</x>
+        <y>34</y>
         <width>121</width>
-        <height>19</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -519,11 +519,45 @@ QSlider::groove:horizontal {
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
+     <widget class="QSlider" name="slideNumberOfPasses">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>117</y>
+        <width>121</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSlider::handle:horizontal {
+	background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+     border: 1px solid #5c5c5c;
+     border-radius: 3px;
+     margin: -8px 0; /* expand outside the groove */
+	 width: 10px;
+	 height: 18px;
+ }
+QSlider::groove:horizontal {
+	height: 3px;
+	background-color: rgb(53, 53, 53);
+	border: 1px solid #5c5c5c;
+}</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
      <widget class="QLabel" name="labelLaserDelay">
       <property name="geometry">
        <rect>
         <x>130</x>
-        <y>100</y>
+        <y>74</y>
         <width>41</width>
         <height>16</height>
        </rect>
@@ -549,7 +583,7 @@ QSlider::groove:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>110</y>
+        <y>74</y>
         <width>121</width>
         <height>19</height>
        </rect>
@@ -570,7 +604,7 @@ QSlider::groove:horizontal {
 }</string>
       </property>
       <property name="maximum">
-       <number>100</number>
+       <number>200</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -580,7 +614,7 @@ QSlider::groove:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>90</y>
+        <y>56</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -603,9 +637,9 @@ QSlider::groove:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>15</y>
         <width>51</width>
-        <height>16</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="font">
@@ -625,10 +659,10 @@ QSlider::groove:horizontal {
      <widget class="QLabel" name="labelLaserPower">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>50</y>
+        <x>129</x>
+        <y>34</y>
         <width>41</width>
-        <height>16</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="font">
@@ -652,7 +686,7 @@ QSlider::groove:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>10</y>
+        <y>0</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -670,6 +704,55 @@ QSlider::groove:horizontal {
       </property>
       <property name="text">
        <string>Enable Laser Mode</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelNumberOfPasses">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>119</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(204,204,204);</string>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>98</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(204,204,204);</string>
+      </property>
+      <property name="text">
+       <string>Passes</string>
       </property>
      </widget>
     </widget>
