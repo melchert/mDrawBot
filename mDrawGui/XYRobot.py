@@ -112,6 +112,7 @@ class XYBot(QGraphicsItem):
         self.motoBDir = 0
         self.speed = 50
         self.laserBurnDelay = 0
+        self.numberOfPasses = 1
         self.origin = None
         self.xyorigin = None
         self.q = queue.Queue()

@@ -121,6 +121,7 @@ class Scara(QGraphicsItem):
         self.printing = False
         self.pausing = False
         self.laserBurnDelay = 0
+        self.numberOfPasses = 1
         self.lastx = 0
         self.lasty = 0
         self.ui.label.setText("X(mm)")

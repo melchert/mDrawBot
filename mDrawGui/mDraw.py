@@ -86,6 +86,7 @@ class MainUI(QWidget):
         # connect laser widget
         self.ui.slideLaserPower.valueChanged.connect(self.laserValue)
         self.ui.slideLaserDelay.valueChanged.connect(self.laserDelay)
+        self.ui.slideNumberOfPasses.valueChanged.connect(self.numberOfPasses)
         self.ui.radioLaserMode.toggled.connect(self.laserMode)
         
         self.ui.tabWidget.currentChanged.connect(self.tabWidgetChanged)
@@ -675,6 +676,12 @@ class MainUI(QWidget):
         delay = self.ui.slideLaserDelay.value()
         self.ui.labelLaserDelay.setText(str(delay))
         self.robot.laserBurnDelay = delay
+        
+    def numberOfPasses(self):
+        passes = self.ui.slideNumberOfPasses.value()
+        self.ui.labelNumberOfPasses.setText(str(passes))
+        self.robot.numberOfPasses = passes
+        print( self.robot.numberOfPasses )
     
     def laserMode(self,txt=False):
         if txt==False:
