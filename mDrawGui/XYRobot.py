@@ -326,44 +326,45 @@ class XYBot(QGraphicsItem):
         if self.moveList == None: return
         moveLen = len(self.moveList)
         moveCnt = 0
-        for move in self.moveList:
-            #loop for all points
-            for i in range(len(move)):
-                p = move[i]
-                x=(p[0]-self.origin[0])
-                y=(p[1]-self.origin[1]-self.height)
-                try:
-                    if self.printing == False:
-                        return
-                    elif self.pausing == True:
-                        while self.pausing==True:
-                            time.sleep(0.5)
-                    auxDelay = 0
-                    if self.laserMode:
-                        if i>0:
-                            auxDelay = self.laserBurnDelay*200
-                        elif i==0:
-                            self.M4(self.laserPower,0.0) # turn laser power down when perform transition
+        for iteration in range( self.numberOfPasses ) :
+            for move in self.moveList:
+                #loop for all points
+                for i in range(len(move)):
+                    p = move[i]
+                    x=(p[0]-self.origin[0])
+                    y=(p[1]-self.origin[1]-self.height)
+                    try:
+                        if self.printing == False:
+                            return
+                        elif self.pausing == True:
+                            while self.pausing==True:
+                                time.sleep(0.5)
+                        auxDelay = 0
+                        if self.laserMode:
+                            if i>0:
+                                auxDelay = self.laserBurnDelay*200
+                            elif i==0:
+                                self.M4(self.laserPower,0.0) # turn laser power down when perform transition
+                                self.q.get()
+                        self.G1(x,-y,auxdelay = auxDelay)
+                        self.x = x
+                        self.y = y
+                        self.q.get()
+                        if self.laserMode and i==0:
+                            self.M4(self.laserPower) # turn laser power back to set value
                             self.q.get()
-                    self.G1(x,-y,auxdelay = auxDelay)
-                    self.x = x
-                    self.y = y
+                        if not self.laserMode and i==0:
+                            self.M1(self.penDownPos)
+                            self.q.get()
+                            time.sleep(0.2)
+                    except:
+                        pass
+                if not self.laserMode:
+                    self.M1(self.penUpPos)
                     self.q.get()
-                    if self.laserMode and i==0:
-                        self.M4(self.laserPower) # turn laser power back to set value
-                        self.q.get()
-                    if not self.laserMode and i==0:
-                        self.M1(self.penDownPos)
-                        self.q.get()
-                        time.sleep(0.2)
-                except:
-                    pass
-            if not self.laserMode:
-                self.M1(self.penUpPos)
-                self.q.get()
-                time.sleep(0.2)
-            moveCnt+=1
-            self.robotSig.emit("pg %d" %(int(moveCnt*100/moveLen)))
+                    time.sleep(0.2)
+                moveCnt+=1
+                self.robotSig.emit("pg %d" %(int(moveCnt*100/moveLen)))
         self.printing = False
         self.robotSig.emit("done")
     
