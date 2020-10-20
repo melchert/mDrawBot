@@ -344,7 +344,7 @@ class XYBot(QGraphicsItem):
                             if i>0:
                                 auxDelay = self.laserBurnDelay*200
                             elif i==0:
-                                self.M4(self.laserPower,0.0) # turn laser power down when perform transition
+                                self.M4(0) # turn laser power down when perform transition
                                 self.q.get()
                         self.G1(x,-y,auxdelay = auxDelay)
                         self.x = x
