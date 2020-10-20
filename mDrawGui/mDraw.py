@@ -501,6 +501,7 @@ class MainUI(QWidget):
         if cmd==False:
             cmd = str(self.ui.lineSend.text())+'\n'
         self.comm.send(cmd)
+        self.dbg( cmd, level=DEBUG_NORMAL )
     
     def clearPic(self):
         if self.robot.printing:
